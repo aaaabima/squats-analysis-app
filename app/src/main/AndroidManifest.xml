@@ -3,7 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-feature android:name="android.hardware.camera" />
+
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
 
     <application
         android:allowBackup="true"
@@ -15,6 +18,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Squatsanalysisapp"
         tools:targetApi="31">
+        <receiver
+            android:name=".fragment.schedule.AlarmReceiver"
+            android:enabled="true"
+            android:exported="true"></receiver>
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
