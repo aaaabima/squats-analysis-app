@@ -5,4 +5,12 @@
     <string name="settings">Settings</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="permission">Permission</string>
+    <string name="set_an_alarm">Set a Reminder!</string>
+    <string name="date">Date</string>
+    <string name="schedule_date">Schedule Date</string>
+    <string name="time">Time</string>
+    <string name="schedule_time">Schedule Time</string>
+    <string name="schedule_details">Schedule details...</string>
+    <string name="set_schedule">Set Schedule</string>
 </resources>
