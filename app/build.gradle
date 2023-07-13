@@ -42,11 +42,41 @@ apply from: 'download_task.gradle'
 
 dependencies {
 
+    // Kotlin Language
     implementation 'androidx.core:core-ktx:1.8.0'
+
+    // Appcompat and UI
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.fragment:fragment-ktx:1.6.0'
+
+    // Navigation Library
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.6.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.6.0'
+
+    // CameraX Core Library
+    implementation 'androidx.camera:camera-core:1.2.3'
+
+    // CameraX Camera2 Extensions
+    implementation 'androidx.camera:camera-camera2:1.2.3'
+
+    // CameraX Lifecycle Library
+    implementation 'androidx.camera:camera-lifecycle:1.2.3'
+
+    // CameraX View Class
+    implementation 'androidx.camera:camera-view:1.2.3'
+
+    // WindowManager
+    implementation 'androidx.window:window:1.1.0'
+
+    // Unit Testing
     testImplementation 'junit:junit:4.13.2'
+
+    // Instrumented Testing
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    // MediaPipe Library
+    implementation 'com.google.mediapipe:tasks-vision:0.10.2'
 }
