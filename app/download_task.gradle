@@ -19,4 +19,4 @@ task downloadTaskFile(type: Download) {
     overwrite false
 }
 
-preBuild.dependsOn downloadTaskFile, downloadTaskFile1, downloadTaskFile2
+preBuild.dependsOn downloadTaskFile
