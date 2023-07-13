@@ -7,6 +7,8 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -21,8 +23,7 @@
         <receiver
             android:name=".fragment.schedule.AlarmReceiver"
             android:enabled="true"
-            android:exported="true"></receiver>
-
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
