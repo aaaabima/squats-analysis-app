@@ -11,6 +11,10 @@
     <string name="schedule_date">Schedule Date</string>
     <string name="time">Time</string>
     <string name="schedule_time">Schedule Time</string>
-    <string name="schedule_details">Schedule details...</string>
+    <string name="schedule_details">Schedule details…</string>
     <string name="set_schedule">Set Schedule</string>
+    <string name="set_a_daily_reminder">Set a Daily Reminder!</string>
+    <string name="daily_time">Daily time</string>
+    <string name="daily_details">Daily details</string>
+    <string name="set_daily_alarm">Set Daily</string>
 </resources>
