@@ -3,11 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/exerciseFragment">
+    app:startDestination="@id/permissionFragment">
 
     <fragment
-        android:id="@+id/exerciseFragment"
+        android:id="@+id/fragment_exercise"
         android:name="id.aaaabima.squats_analysis_app.fragment.ExerciseFragment"
-        android:label="fragment_exercise"
+        android:label="@string/exercise"
         tools:layout="@layout/fragment_exercise" />
+    <fragment
+        android:id="@+id/fragment_schedule"
+        android:name="id.aaaabima.squats_analysis_app.fragment.schedule.ScheduleFragment"
+        android:label="@string/schedule"
+        tools:layout="@layout/fragment_schedule" />
+    <fragment
+        android:id="@+id/fragment_settings"
+        android:name="id.aaaabima.squats_analysis_app.fragment.SettingsFragment"
+        android:label="@string/settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/permissionFragment"
+        android:name="id.aaaabima.squats_analysis_app.fragment.PermissionFragment"
+        android:label=""
+        tools:layout="@layout/fragment_permission" />
 </navigation>
