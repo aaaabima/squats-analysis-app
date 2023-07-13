@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.squatsanalysisapp'
+    namespace 'id.aaaabima.squats_analysis_app'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.squatsanalysisapp"
+        applicationId "id.aaaabima.squats_analysis_app"
         minSdk 24
         targetSdk 33
         versionCode 1
@@ -30,9 +30,6 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    buildFeatures {
-        viewBinding true
-    }
 }
 
 dependencies {
@@ -41,11 +38,6 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.2'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.5.2'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
