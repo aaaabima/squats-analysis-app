@@ -3,8 +3,6 @@
     <string name="exercise">Exercise</string>
     <string name="schedule">Schedule</string>
     <string name="settings">Settings</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="permission">Permission</string>
     <string name="set_an_alarm">Set a Reminder!</string>
     <string name="date">Date</string>
@@ -17,4 +15,14 @@
     <string name="daily_time">Daily time</string>
     <string name="daily_details">Daily details</string>
     <string name="set_daily_alarm">Set Daily</string>
+    <string name="detection_threshold">Detection Threshold</string>
+    <string name="tracking_threshold">Tracking Threshold</string>
+    <string name="presence_threshold">Presence Threshold</string>
+    <string name="delegate">Delegate</string>
+
+    <string-array name="delegate_spinner_titles">
+        <item>CPU</item>
+        <item>GPU</item>
+    </string-array>
+
 </resources>
