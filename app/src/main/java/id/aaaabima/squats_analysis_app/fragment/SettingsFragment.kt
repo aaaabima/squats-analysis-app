@@ -28,7 +28,7 @@ class SettingsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentSettingsBinding.inflate(layoutInflater)
+        binding = FragmentSettingsBinding.inflate(inflater, container, false)
 
         return binding.root
     }
