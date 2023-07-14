@@ -5,56 +5,133 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import id.aaaabima.squats_analysis_app.R
+import android.widget.AdapterView
+import androidx.fragment.app.activityViewModels
+import id.aaaabima.squats_analysis_app.MainViewModel
+import id.aaaabima.squats_analysis_app.PoseLandmarkerHelper
+import id.aaaabima.squats_analysis_app.databinding.FragmentSettingsBinding
+import java.util.Locale
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [SettingsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class SettingsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var binding: FragmentSettingsBinding
+    private val viewModel: MainViewModel by activityViewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var poseLandmarkerHelper: PoseLandmarkerHelper
+
+    // Blocking ML operations are performed using this executor
+    private lateinit var backgroundExecutor: ExecutorService
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings, container, false)
+        binding = FragmentSettingsBinding.inflate(layoutInflater)
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Initialize background executor
+        backgroundExecutor = Executors.newSingleThreadExecutor()
+
+        updateSettingsUi()
+        setButtonListener()
+    }
+
+    private fun setButtonListener() {
+        binding.detectionThresholdPlus.setOnClickListener {
+            viewModel.currentMinPoseDetectionConfidence.let {
+                if (it <= 0.81) {
+                    viewModel.setMinPoseDetectionConfidence(it + 0.1f)
+                    updateSettingsUi()
+                }
+            }
+        }
+
+        binding.detectionThresholdMinus.setOnClickListener {
+            viewModel.currentMinPoseDetectionConfidence.let {
+                if (it >= 0.2) {
+                    viewModel.setMinPoseDetectionConfidence(it - 0.1f)
+                    updateSettingsUi()
+                }
+            }
+        }
+        binding.trackingThresholdPlus.setOnClickListener {
+            viewModel.currentMinPoseTrackingConfidence.let {
+                if (it <= 0.81) {
+                    viewModel.setMinPoseTrackingConfidence(it + 0.1f)
+                    updateSettingsUi()
+                }
+            }
+        }
+
+        binding.trackingThresholdMinus.setOnClickListener {
+            viewModel.currentMinPoseTrackingConfidence.let {
+                if (it >= 0.2) {
+                    viewModel.setMinPoseTrackingConfidence(it - 0.1f)
+                    updateSettingsUi()
+                }
+            }
+        }
+        binding.presenceThresholdPlus.setOnClickListener {
+            viewModel.currentMinPosePresenceConfidence.let {
+                if (it <= 0.81) {
+                    viewModel.setMinPosePresenceConfidence(it + 0.1f)
+                    updateSettingsUi()
+                }
+            }
+        }
+
+        binding.presenceThresholdMinus.setOnClickListener {
+            viewModel.currentMinPosePresenceConfidence.let {
+                if (it >= 0.2) {
+                    viewModel.setMinPosePresenceConfidence(it - 0.1f)
+                    updateSettingsUi()
+                }
+            }
+        }
+
+        binding.spinnerDelegate.setSelection(
+            viewModel.currentDelegate, false
+        )
+        binding.spinnerDelegate.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    viewModel.setDelegate(position)
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    // No implementation
+                }
+            }
+    }
+
+    private fun updateSettingsUi() {
+        binding.detectionThresholdValue.text =
+            String.format(
+                Locale.US, "%.2f", viewModel.currentMinPoseDetectionConfidence
+            )
+        binding.trackingThresholdValue.text =
+            String.format(
+                Locale.US, "%.2f", viewModel.currentMinPoseTrackingConfidence
+            )
+        binding.presenceThresholdValue.text =
+            String.format(
+                Locale.US, "%.2f", viewModel.currentMinPosePresenceConfidence
+            )
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SettingsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SettingsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+
     }
 }
