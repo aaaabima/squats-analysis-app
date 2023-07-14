@@ -49,7 +49,7 @@ class PoseLandmarkerHelper(
 
     // Initialize Pose Landmarker with a few default settings on this class
 
-    private fun setupPoseLandmarker() {
+    fun setupPoseLandmarker() {
         // Set general pose landmarker options
         val baseOptionsBuilder = BaseOptions.builder()
 
