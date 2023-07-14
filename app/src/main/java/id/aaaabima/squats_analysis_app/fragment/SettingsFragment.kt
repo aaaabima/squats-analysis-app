@@ -8,20 +8,12 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import androidx.fragment.app.activityViewModels
 import id.aaaabima.squats_analysis_app.MainViewModel
-import id.aaaabima.squats_analysis_app.PoseLandmarkerHelper
 import id.aaaabima.squats_analysis_app.databinding.FragmentSettingsBinding
 import java.util.Locale
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
 
 class SettingsFragment : Fragment() {
     private lateinit var binding: FragmentSettingsBinding
     private val viewModel: MainViewModel by activityViewModels()
-
-    private lateinit var poseLandmarkerHelper: PoseLandmarkerHelper
-
-    // Blocking ML operations are performed using this executor
-    private lateinit var backgroundExecutor: ExecutorService
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,9 +27,6 @@ class SettingsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        // Initialize background executor
-        backgroundExecutor = Executors.newSingleThreadExecutor()
 
         updateSettingsUi()
         setButtonListener()
