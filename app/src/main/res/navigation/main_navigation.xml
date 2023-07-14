@@ -9,7 +9,11 @@
         android:id="@+id/fragment_exercise"
         android:name="id.aaaabima.squats_analysis_app.fragment.ExerciseFragment"
         android:label="@string/exercise"
-        tools:layout="@layout/fragment_exercise" />
+        tools:layout="@layout/fragment_exercise" >
+        <action
+            android:id="@+id/action_fragment_exercise_to_permissionFragment"
+            app:destination="@id/permissionFragment" />
+    </fragment>
     <fragment
         android:id="@+id/fragment_schedule"
         android:name="id.aaaabima.squats_analysis_app.fragment.schedule.ScheduleFragment"
