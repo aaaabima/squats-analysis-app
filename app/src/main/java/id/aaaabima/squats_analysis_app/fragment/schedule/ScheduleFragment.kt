@@ -13,10 +13,20 @@ class ScheduleFragment : Fragment(), View.OnClickListener {
 
     private var binding: FragmentScheduleBinding? = null
     private lateinit var alarmReceiver: AlarmReceiver
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
-        binding = FragmentScheduleBinding.inflate(layoutInflater)
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        binding = FragmentScheduleBinding.inflate(inflater, container, false)
+
+        return binding?.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         binding?.btnScheduleDate?.setOnClickListener(this)
         binding?.btnScheduleTime?.setOnClickListener(this)
@@ -25,14 +35,6 @@ class ScheduleFragment : Fragment(), View.OnClickListener {
         binding?.btnSetDaily?.setOnClickListener(this)
 
         alarmReceiver = AlarmReceiver()
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return binding?.root
     }
 
     override fun onClick(v: View) {
