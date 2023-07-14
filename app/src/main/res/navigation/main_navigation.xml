@@ -24,5 +24,9 @@
         android:id="@+id/permissionFragment"
         android:name="id.aaaabima.squats_analysis_app.fragment.PermissionFragment"
         android:label=""
-        tools:layout="@layout/fragment_permission" />
+        tools:layout="@layout/fragment_permission" >
+        <action
+            android:id="@+id/action_permissionFragment_to_fragment_exercise"
+            app:destination="@id/fragment_exercise" />
+    </fragment>
 </navigation>
