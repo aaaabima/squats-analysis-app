@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.SystemClock
 import android.util.Log
 import androidx.annotation.VisibleForTesting
+import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageProxy
 import com.google.mediapipe.framework.image.BitmapImageBuilder
 import com.google.mediapipe.framework.image.MPImage
@@ -26,8 +27,7 @@ class PoseLandmarkerHelper(
     // Listener will be used on RunningMode.LIVE_STREAM
     val poseLandmarkerHelperListener: LandmarkerListener? = null
 ) {
-    private val modelName = "pose_landmarker_heavy.task"
-    private val delegateMode = Delegate.GPU
+    private val modelName = "pose_landmarker_full.task"
     private val runningMode = RunningMode.LIVE_STREAM
 
     // Using var to allow pose landmarker to be reset and change while program is running
@@ -94,7 +94,7 @@ class PoseLandmarkerHelper(
                 TAG, "Mediapipe failed to load the task with error: " + e.message
             )
         } catch (e: RuntimeException) {
-            // This ill happen if the model does not support GPU
+            // This will happen if the model does not support GPU
             poseLandmarkerHelperListener?.onError(
                 "Pose Landmarker failed to initialize. See error logs for " +
                         "details", GPU_ERROR
@@ -311,6 +311,7 @@ class PoseLandmarkerHelper(
         const val DEFAULT_NUM_POSES = 1
         const val OTHER_ERROR = 0
         const val GPU_ERROR = 1
+        const val DEFAULT_CAMERA_FACING_FRONT = CameraSelector.LENS_FACING_FRONT
     }
 
     data class ResultBundle(
