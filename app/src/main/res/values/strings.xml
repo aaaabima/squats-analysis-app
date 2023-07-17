@@ -19,10 +19,15 @@
     <string name="tracking_threshold">Tracking Threshold</string>
     <string name="presence_threshold">Presence Threshold</string>
     <string name="delegate">Delegate</string>
+    <string name="camera">Camera</string>
 
     <string-array name="delegate_spinner_titles">
         <item>CPU</item>
         <item>GPU</item>
+    </string-array>
+    <string-array name="camera_spinner_titles">
+        <item>Front Camera</item>
+        <item>Back Camera</item>
     </string-array>
 
 </resources>
