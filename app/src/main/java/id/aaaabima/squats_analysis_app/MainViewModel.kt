@@ -1,7 +1,6 @@
 package id.aaaabima.squats_analysis_app
 
 import androidx.lifecycle.ViewModel
-import com.google.mediapipe.tasks.vision.poselandmarker.PoseLandmarker.PoseLandmarkerOptions
 
 class MainViewModel : ViewModel() {
     private var _delegate: Int = PoseLandmarkerHelper.DELEGATE_CPU
@@ -11,6 +10,7 @@ class MainViewModel : ViewModel() {
         PoseLandmarkerHelper.DEFAULT_POSE_PRESENCE_CONFIDENCE
     private var _minPoseTrackingConfidence: Float =
         PoseLandmarkerHelper.DEFAULT_POSE_TRACKING_CONFIDENCE
+    private var _cameraFacing: Int = PoseLandmarkerHelper.DEFAULT_CAMERA_FACING_FRONT
 
     val currentDelegate: Int get() = _delegate
     val currentMinPoseDetectionConfidence: Float
@@ -19,6 +19,8 @@ class MainViewModel : ViewModel() {
         get() = _minPosePresenceConfidence
     val currentMinPoseTrackingConfidence: Float
         get() = _minPoseTrackingConfidence
+    val currentCameraFacing: Int
+        get() = _cameraFacing
 
     fun setDelegate(delegate: Int) {
         _delegate = delegate
@@ -34,5 +36,9 @@ class MainViewModel : ViewModel() {
 
     fun setMinPosePresenceConfidence(confidence: Float) {
         _minPosePresenceConfidence = confidence
+    }
+
+    fun setCameraFacing(cameraFacing: Int) {
+        _cameraFacing = cameraFacing
     }
 }

@@ -103,6 +103,26 @@ class SettingsFragment : Fragment() {
                     // No implementation
                 }
             }
+
+        binding.spinnerCamera.setSelection(
+            viewModel.currentCameraFacing, false
+        )
+        binding.spinnerCamera.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    viewModel.setCameraFacing(position)
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    // No implementation
+                }
+
+            }
     }
 
     private fun updateSettingsUi() {
@@ -118,9 +138,5 @@ class SettingsFragment : Fragment() {
             String.format(
                 Locale.US, "%.2f", viewModel.currentMinPosePresenceConfidence
             )
-    }
-
-    companion object {
-
     }
 }
