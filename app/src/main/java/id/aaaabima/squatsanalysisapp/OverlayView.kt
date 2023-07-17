@@ -33,7 +33,8 @@ class OverlayView(context: Context?, attrs: AttributeSet): View(context, attrs) 
     }
 
     private fun initPaints() {
-        linePaint.color = ContextCompat.getColor(context!!, androidx.appcompat.R.color.material_blue_grey_800)
+        linePaint.color =
+            ContextCompat.getColor(context!!, androidx.appcompat.R.color.material_blue_grey_800)
         linePaint.strokeWidth = LANDMARK_STROKE_WIDTH
         linePaint.style = Paint.Style.STROKE
 
@@ -45,8 +46,14 @@ class OverlayView(context: Context?, attrs: AttributeSet): View(context, attrs) 
     override fun draw(canvas: Canvas) {
         super.draw(canvas)
         results?.let { poseLandmarkerResult ->
+            val needed: ArrayList<NormalizedLandmark> = arrayListOf()
+            poseLandmarkerResult.landmarks().map {
+                for (i in getSquatsPoseLandmarks())
+                    needed.add(it[i])
+            }
+            Log.d(TAG, "draw: $needed")
             for (landmark in poseLandmarkerResult.landmarks()) {
-                for (normalizedLandmark in landmark) {
+                for (normalizedLandmark in needed) {
                     canvas.drawPoint(
                         normalizedLandmark.x() * imageWidth * scaleFactor,
                         normalizedLandmark.y() * imageHeight * scaleFactor,
@@ -83,5 +90,6 @@ class OverlayView(context: Context?, attrs: AttributeSet): View(context, attrs) 
 
     companion object {
         private const val LANDMARK_STROKE_WIDTH = 12F
+        private const val TAG = "OverlayView"
     }
 }
