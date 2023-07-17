@@ -1,4 +1,4 @@
-package id.aaaabima.squats_analysis_app.fragment
+package id.aaaabima.squatsanalysisapp.fragment
 
 import android.Manifest
 import android.content.Context
@@ -10,7 +10,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
-import id.aaaabima.squats_analysis_app.R
+import id.aaaabima.squatsanalysisapp.R
 
 private val PERMISSIONS_REQUIRED = arrayOf(Manifest.permission.CAMERA)
 

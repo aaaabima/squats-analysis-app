@@ -1,4 +1,4 @@
-package id.aaaabima.squats_analysis_app
+package id.aaaabima.squatsanalysisapp
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

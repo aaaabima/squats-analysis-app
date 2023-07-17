@@ -1,4 +1,4 @@
-package id.aaaabima.squats_analysis_app
+package id.aaaabima.squatsanalysisapp
 
 import org.junit.Test
 

@@ -1,4 +1,4 @@
-package id.aaaabima.squats_analysis_app.utils
+package id.aaaabima.squatsanalysisapp.utils
 
 data class Threshold(
     val normalAngle: ArrayList<Int> = arrayListOf(0, 32),

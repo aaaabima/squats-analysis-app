@@ -1,4 +1,4 @@
-package id.aaaabima.squats_analysis_app
+package id.aaaabima.squatsanalysisapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,9 +7,9 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import id.aaaabima.squats_analysis_app.databinding.ActivityMainBinding
-import id.aaaabima.squats_analysis_app.fragment.schedule.DatePickerFragment
-import id.aaaabima.squats_analysis_app.fragment.schedule.TimePickerFragment
+import id.aaaabima.squatsanalysisapp.databinding.ActivityMainBinding
+import id.aaaabima.squatsanalysisapp.fragment.schedule.DatePickerFragment
+import id.aaaabima.squatsanalysisapp.fragment.schedule.TimePickerFragment
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale

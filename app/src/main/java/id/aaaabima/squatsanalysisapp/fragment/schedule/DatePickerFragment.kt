@@ -1,4 +1,4 @@
-package id.aaaabima.squats_analysis_app.fragment.schedule
+package id.aaaabima.squatsanalysisapp.fragment.schedule
 
 import android.app.DatePickerDialog
 import android.app.Dialog

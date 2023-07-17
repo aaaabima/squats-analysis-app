@@ -1,4 +1,4 @@
-package id.aaaabima.squats_analysis_app.fragment
+package id.aaaabima.squatsanalysisapp.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import androidx.fragment.app.activityViewModels
-import id.aaaabima.squats_analysis_app.MainViewModel
-import id.aaaabima.squats_analysis_app.databinding.FragmentSettingsBinding
+import id.aaaabima.squatsanalysisapp.MainViewModel
+import id.aaaabima.squatsanalysisapp.databinding.FragmentSettingsBinding
 import java.util.Locale
 
 class SettingsFragment : Fragment() {

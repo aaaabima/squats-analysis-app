@@ -1,4 +1,4 @@
-package id.aaaabima.squats_analysis_app.fragment.schedule
+package id.aaaabima.squatsanalysisapp.fragment.schedule
 
 import android.app.AlarmManager
 import android.app.NotificationChannel
@@ -13,7 +13,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
-import id.aaaabima.squats_analysis_app.R
+import id.aaaabima.squatsanalysisapp.R
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Calendar

@@ -1,12 +1,12 @@
-package id.aaaabima.squats_analysis_app.fragment.schedule
+package id.aaaabima.squatsanalysisapp.fragment.schedule
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import id.aaaabima.squats_analysis_app.R
-import id.aaaabima.squats_analysis_app.databinding.FragmentScheduleBinding
+import id.aaaabima.squatsanalysisapp.R
+import id.aaaabima.squatsanalysisapp.databinding.FragmentScheduleBinding
 
 
 class ScheduleFragment : Fragment(), View.OnClickListener {

@@ -1,17 +1,20 @@
-package id.aaaabima.squats_analysis_app
+package id.aaaabima.squatsanalysisapp
 
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
+import com.google.mediapipe.tasks.components.containers.NormalizedLandmark
 import com.google.mediapipe.tasks.vision.poselandmarker.PoseLandmarker
 import com.google.mediapipe.tasks.vision.poselandmarker.PoseLandmarkerResult
+import id.aaaabima.squatsanalysisapp.utils.getSquatsPoseLandmarks
 import java.lang.Float.max
 
-class OverlayView(context: Context?, attrs: AttributeSet): View(context, attrs) {
+class OverlayView(context: Context?, attrs: AttributeSet) : View(context, attrs) {
     private var results: PoseLandmarkerResult? = null
     private var pointPaint = Paint()
     private var linePaint = Paint()

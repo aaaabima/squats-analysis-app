@@ -1,4 +1,4 @@
-package id.aaaabima.squats_analysis_app
+package id.aaaabima.squatsanalysisapp
 
 import android.content.Context
 import android.graphics.Bitmap

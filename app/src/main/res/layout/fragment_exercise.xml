@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         app:scaleType="fillStart" />
 
-    <id.aaaabima.squats_analysis_app.OverlayView
+    <id.aaaabima.squatsanalysisapp.OverlayView
         android:id="@+id/overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
