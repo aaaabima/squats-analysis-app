@@ -39,7 +39,7 @@ class ExerciseFragment : Fragment(), PoseLandmarkerHelper.LandmarkerListener {
     private var imageAnalyzer: ImageAnalysis? = null
     private var camera: Camera? = null
     private var cameraProvider: ProcessCameraProvider? = null
-    private var cameraFacing = CameraSelector.LENS_FACING_BACK
+    private var cameraFacing: Int = 0
 
     private lateinit var backgroundExecutor: ExecutorService
 
@@ -97,6 +97,7 @@ class ExerciseFragment : Fragment(), PoseLandmarkerHelper.LandmarkerListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        cameraFacing = viewModel.currentCameraFacing
 
         // Initialize background executor
         backgroundExecutor = Executors.newSingleThreadExecutor()
