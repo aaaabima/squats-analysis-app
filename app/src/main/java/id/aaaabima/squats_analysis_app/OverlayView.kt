@@ -48,7 +48,7 @@ class OverlayView(context: Context?, attrs: AttributeSet): View(context, attrs) 
             for (landmark in poseLandmarkerResult.landmarks()) {
                 for (normalizedLandmark in landmark) {
                     canvas.drawPoint(
-                        normalizedLandmark.x() * imageHeight * scaleFactor,
+                        normalizedLandmark.x() * imageWidth * scaleFactor,
                         normalizedLandmark.y() * imageHeight * scaleFactor,
                         pointPaint
                     )
