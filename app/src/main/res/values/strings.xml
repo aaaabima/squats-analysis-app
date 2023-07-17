@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">squats-analysis-app</string>
+    <string name="app_name">Squats Analysis App</string>
     <string name="exercise">Exercise</string>
     <string name="schedule">Schedule</string>
     <string name="settings">Settings</string>
@@ -20,6 +20,7 @@
     <string name="presence_threshold">Presence Threshold</string>
     <string name="delegate">Delegate</string>
     <string name="camera">Camera</string>
+    <string name="inference_time">Inference Time: %s ms</string>
 
     <string-array name="delegate_spinner_titles">
         <item>CPU</item>

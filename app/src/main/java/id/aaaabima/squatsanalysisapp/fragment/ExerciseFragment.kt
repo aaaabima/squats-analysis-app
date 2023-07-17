@@ -1,4 +1,4 @@
-package id.aaaabima.squats_analysis_app.fragment
+package id.aaaabima.squatsanalysisapp.fragment
 
 import android.content.res.Configuration
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Spinner
+import android.widget.TextView
 import android.widget.Toast
 import androidx.camera.core.AspectRatio
 import androidx.camera.core.Camera
@@ -19,10 +20,10 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
-import id.aaaabima.squats_analysis_app.MainViewModel
-import id.aaaabima.squats_analysis_app.PoseLandmarkerHelper
-import id.aaaabima.squats_analysis_app.R
-import id.aaaabima.squats_analysis_app.databinding.FragmentExerciseBinding
+import id.aaaabima.squatsanalysisapp.MainViewModel
+import id.aaaabima.squatsanalysisapp.PoseLandmarkerHelper
+import id.aaaabima.squatsanalysisapp.R
+import id.aaaabima.squatsanalysisapp.databinding.FragmentExerciseBinding
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
@@ -147,7 +148,8 @@ class ExerciseFragment : Fragment(), PoseLandmarkerHelper.LandmarkerListener {
 
     private fun bindCameraUseCases() {
         // Camera Provider
-        val cameraProvider = cameraProvider?: throw IllegalStateException("Camera initialization failed.")
+        val cameraProvider =
+            cameraProvider ?: throw IllegalStateException("Camera initialization failed.")
 
         val cameraSelector = CameraSelector.Builder().requireLensFacing(cameraFacing).build()
 
@@ -217,6 +219,11 @@ class ExerciseFragment : Fragment(), PoseLandmarkerHelper.LandmarkerListener {
     override fun onResults(resultBundle: PoseLandmarkerHelper.ResultBundle) {
         activity?.runOnUiThread {
             if (_binding != null) {
+                val inferenceTimeView: TextView =
+                    requireActivity().findViewById(R.id.tv_inference_time)
+                inferenceTimeView.text =
+                    String.format(getString(R.string.inference_time), resultBundle.inferenceTime)
+
                 binding.overlay.setResults(
                     resultBundle.results.first(),
                     resultBundle.inputImageHeight,
