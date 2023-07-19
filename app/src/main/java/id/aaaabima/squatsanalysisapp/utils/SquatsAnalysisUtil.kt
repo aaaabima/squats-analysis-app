@@ -46,3 +46,11 @@ fun getSquatsPoseLandmarks(): ArrayList<Int> =
     arrayListOf(
         0, 11, 12, 13, 14, 15, 16, 23, 24, 25, 26, 27, 28, 31, 32
     )
+fun ArrayList<String>.count(state: String): Int {
+    var counter = 0
+    this.forEach {
+        if (it == state)
+            counter++
+    }
+    return counter
+}
