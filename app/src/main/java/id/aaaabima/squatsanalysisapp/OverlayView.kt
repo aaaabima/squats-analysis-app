@@ -91,6 +91,38 @@ class OverlayView(context: Context?, attrs: AttributeSet) : View(context, attrs)
         invalidate()
     }
 
+    private fun getState(kneeAngle: Int): String {
+        return when (kneeAngle) {
+            in Threshold.values()[0].normalAngle.first() .. Threshold.values()[0].normalAngle.last() -> {
+                return "s1"
+            }
+            in Threshold.values()[0].transAngle.first() .. Threshold.values()[0].transAngle.last() -> {
+                return "s2"
+            }
+            in Threshold.values()[0].passAngle.first() .. Threshold.values()[0].passAngle.last() -> {
+                return "s3"
+            }
+            else -> ""
+        }
+    }
+
+    private fun updateStateSequence(state: String) {
+        when(state) {
+            "s2" -> {
+                if ((!stateSequence.contains("s3") && stateSequence.count("s3") == 0) || (stateSequence.contains("s3") && stateSequence.count("s2") == 1))
+                    stateSequence.add(state)
+            }
+            "s3" -> {
+                if (!stateSequence.contains(state) && stateSequence.contains("s2"))
+                    stateSequence.add(state)
+            }
+        }
+    }
+
+    private fun process() {
+
+    }
+
     companion object {
         private const val LANDMARK_STROKE_WIDTH = 12F
         private const val TAG = "OverlayView"
