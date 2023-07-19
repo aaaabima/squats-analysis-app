@@ -11,6 +11,8 @@ import androidx.core.content.ContextCompat
 import com.google.mediapipe.tasks.components.containers.NormalizedLandmark
 import com.google.mediapipe.tasks.vision.poselandmarker.PoseLandmarker
 import com.google.mediapipe.tasks.vision.poselandmarker.PoseLandmarkerResult
+import id.aaaabima.squatsanalysisapp.utils.Threshold
+import id.aaaabima.squatsanalysisapp.utils.count
 import id.aaaabima.squatsanalysisapp.utils.getSquatsPoseLandmarks
 import java.lang.Float.max
 
@@ -22,6 +24,12 @@ class OverlayView(context: Context?, attrs: AttributeSet) : View(context, attrs)
     private var scaleFactor: Float = 1f
     private var imageWidth: Int = 1
     private var imageHeight: Int = 1
+
+    private var stateSequence: ArrayList<String> = arrayListOf()
+    private var correctSquat = 0
+    private var incorrectSquat = 0
+    private var prevState = ""
+    private var currentState = ""
 
     init {
         initPaints()
