@@ -1,5 +1,6 @@
 package id.aaaabima.squatsanalysisapp.utils
 
+import com.google.mediapipe.tasks.components.containers.NormalizedLandmark
 import kotlin.math.PI
 import kotlin.math.acos
 import kotlin.math.sqrt
