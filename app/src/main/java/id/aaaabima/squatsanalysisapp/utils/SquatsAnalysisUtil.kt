@@ -4,18 +4,6 @@ import kotlin.math.PI
 import kotlin.math.acos
 import kotlin.math.sqrt
 
-fun getThreshold(): Map<String, ArrayList<Int>> {
-    val threshold = Threshold()
-    val thresholdMap: MutableMap<String, ArrayList<Int>> = hashMapOf()
-    thresholdMap["NORMAL"] = threshold.normalAngle
-    thresholdMap["TRANS"] = threshold.transAngle
-    thresholdMap["PASS"] = threshold.passAngle
-    thresholdMap["HIP_THRESH"] = threshold.hipThresh
-    thresholdMap["ANKLE_THRESH"] = threshold.ankleThresh
-    thresholdMap["KNEE_THRESH"] = threshold.kneeThresh
-    return thresholdMap
-}
-
 fun findAngle(
     p1: Pair<Float, Float>,
     p2: Pair<Float, Float>,
@@ -30,6 +18,10 @@ fun findAngle(
 
     return (180.0 / PI * theta).toInt()
 }
+
+fun NormalizedLandmark.toPair(): Pair<Float, Float> = Pair(this.x(), this.y())
+
+fun NormalizedLandmark.toZeroPair(): Pair<Float, Float> = Pair(this.x(), 0f)
 
 // Extension function to calculate the length of a Pair (2D vector)
 fun Pair<Float, Float>.length(): Float {
