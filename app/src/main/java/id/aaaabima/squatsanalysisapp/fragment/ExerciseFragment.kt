@@ -18,6 +18,7 @@ import androidx.camera.core.ImageProxy
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import id.aaaabima.squatsanalysisapp.MainViewModel
@@ -46,6 +47,13 @@ class ExerciseFragment : Fragment(), PoseLandmarkerHelper.LandmarkerListener {
 
     override fun onResume() {
         super.onResume()
+        requireActivity().apply {
+            findViewById<TextView>(R.id.tv_feedback).isVisible = true
+            findViewById<TextView>(R.id.tv_inference_time).isVisible = true
+            findViewById<TextView>(R.id.tv_correct).isVisible = true
+            findViewById<TextView>(R.id.tv_incorrect).isVisible = true
+            findViewById<TextView>(R.id.tv_state).isVisible = true
+        }
         // Check if all permissions are still present
         if (!PermissionFragment.hasPermissions(requireContext())) {
             Navigation.findNavController(
@@ -63,6 +71,13 @@ class ExerciseFragment : Fragment(), PoseLandmarkerHelper.LandmarkerListener {
 
     override fun onPause() {
         super.onPause()
+        requireActivity().apply {
+            findViewById<TextView>(R.id.tv_feedback).isVisible = false
+            findViewById<TextView>(R.id.tv_inference_time).isVisible = false
+            findViewById<TextView>(R.id.tv_correct).isVisible = false
+            findViewById<TextView>(R.id.tv_incorrect).isVisible = false
+            findViewById<TextView>(R.id.tv_state).isVisible = false
+        }
         if (this::poseLandmarkerHelper.isInitialized) {
             viewModel.setMinPoseDetectionConfidence(poseLandmarkerHelper.minPoseDetectionConfidence)
             viewModel.setMinPoseTrackingConfidence(poseLandmarkerHelper.minPoseTrackingConfidence)
@@ -227,7 +242,8 @@ class ExerciseFragment : Fragment(), PoseLandmarkerHelper.LandmarkerListener {
                 binding.overlay.setResults(
                     resultBundle.results.first(),
                     resultBundle.inputImageHeight,
-                    resultBundle.inputImageWidth
+                    resultBundle.inputImageWidth,
+                    requireActivity()
                 )
 
                 // Force redraw
