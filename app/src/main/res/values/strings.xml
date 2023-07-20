@@ -21,6 +21,10 @@
     <string name="delegate">Delegate</string>
     <string name="camera">Camera</string>
     <string name="inference_time">Inference Time: %s ms</string>
+    <string name="feedback">Feedback: %s</string>
+    <string name="state">State: %s</string>
+    <string name="incorrect_squats">Incorrect Squats: %s</string>
+    <string name="correct_squats">Correct Squats: %s</string>
 
     <string-array name="delegate_spinner_titles">
         <item>CPU</item>
