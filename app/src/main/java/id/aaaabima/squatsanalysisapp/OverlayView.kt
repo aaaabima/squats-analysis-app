@@ -6,7 +6,6 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.core.view.isVisible
@@ -66,7 +65,6 @@ class OverlayView(context: Context?, attrs: AttributeSet) : View(context, attrs)
     override fun draw(canvas: Canvas) {
         super.draw(canvas)
         results?.let { poseLandmarkerResult ->
-            process(poseLandmarkerResult)
             val coordsBuffer: HashMap<Int, NormalizedLandmark> = hashMapOf()
             poseLandmarkerResult.landmarks().map {
                 for (i in getSquatsPoseLandmarks())
@@ -77,10 +75,6 @@ class OverlayView(context: Context?, attrs: AttributeSet) : View(context, attrs)
             val nose = coordsBuffer[reqCoords.nose]
             val leftShoulder = coordsBuffer[reqCoords.leftShoulder]
             val rightShoulder = coordsBuffer[reqCoords.rightShoulder]
-            val leftElbow = coordsBuffer[reqCoords.leftElbow]
-            val rightElbow = coordsBuffer[reqCoords.rightElbow]
-            val leftWrist = coordsBuffer[reqCoords.leftWrist]
-            val rightWrist = coordsBuffer[reqCoords.rightWrist]
             val leftHip = coordsBuffer[reqCoords.leftHip]
             val rightHip = coordsBuffer[reqCoords.rightHip]
             val leftKnee = coordsBuffer[reqCoords.leftKnee]
@@ -96,22 +90,15 @@ class OverlayView(context: Context?, attrs: AttributeSet) : View(context, attrs)
                 nose?.toPair() ?: Pair(0f, 0f)
             )
 
-            val feedback: TextView = activity.findViewById(R.id.tv_feedback)
+            val tvFeedback: TextView = activity.findViewById(R.id.tv_feedback)
+            val tvLowerHips: TextView = activity.findViewById(R.id.tv_lower_hips)
 
             if (offsetAngle > Threshold.OffsetThresh.value[0].toInt()) {
-                feedback.isVisible = true
-                feedback.text = String.format(
+                tvFeedback.isVisible = true
+                tvFeedback.text = String.format(
                     context.getString(R.string.feedback),
                     "Camera not aligned properly"
                 )
-//                coordsBuffer.forEach {
-//                    if (it.key in listOf(0,11,12))
-//                    canvas.drawPoint(
-//                        it.value.x() * imageWidth * scaleFactor,
-//                        it.value.y() * imageHeight * scaleFactor,
-//                        pointPaint
-//                    )
-//                }
 
                 for (normalizedLandmark in coordsBuffer.entries) {
                     canvas.drawPoint(
@@ -120,41 +107,27 @@ class OverlayView(context: Context?, attrs: AttributeSet) : View(context, attrs)
                         pointPaint
                     )
                 }
-
-                Log.d(TAG, "Offset angle: $offsetAngle degree")
             } else {
-                feedback.isVisible = false
+                tvFeedback.isVisible = false
 
-                val distLeftShoulderHip = abs((leftFoot?.y() ?: 0f) - (leftShoulder?.y()?: 0f))
-                val distRightShoulderHip = abs((rightFoot?.y() ?: 0f) - (rightShoulder?.y()?: 0f))
+                val distLeftShoulderHip = abs((leftFoot?.y() ?: 0f) - (leftShoulder?.y() ?: 0f))
+                val distRightShoulderHip = abs((rightFoot?.y() ?: 0f) - (rightShoulder?.y() ?: 0f))
 
                 val shoulder: NormalizedLandmark?
-                val elbow: NormalizedLandmark?
-                val wrist: NormalizedLandmark?
                 val hip: NormalizedLandmark?
                 val knee: NormalizedLandmark?
                 val ankle: NormalizedLandmark?
-                val foot: NormalizedLandmark?
-                val multiplier: Int
 
                 if (distLeftShoulderHip < distRightShoulderHip) {
                     shoulder = leftShoulder
-                    elbow = leftElbow
-                    wrist = leftWrist
                     hip = leftHip
                     knee = leftKnee
                     ankle = leftAnkle
-                    foot = leftFoot
-                    multiplier = -1
                 } else {
                     shoulder = rightShoulder
-                    elbow = rightElbow
-                    wrist = rightWrist
                     hip = rightHip
                     knee = rightKnee
                     ankle = rightAnkle
-                    foot = rightFoot
-                    multiplier = 1
                 }
 
                 // Calculate Vertical Angle
@@ -192,6 +165,29 @@ class OverlayView(context: Context?, attrs: AttributeSet) : View(context, attrs)
                 }
 
                 // Perform Feedback Actions
+                else {
+                    if (hipVerticalAngle > Threshold.HipThresh.value.last().toInt())
+                        tvFeedback.text = getFeedbackMessage(0)
+                    else if (hipVerticalAngle < Threshold.HipThresh.value.first()
+                            .toInt() && stateSequence.count("s2") == 1
+                    )
+                        tvFeedback.text = getFeedbackMessage(1)
+
+                    if (Threshold.KneeThresh.value.first()
+                            .toInt() < kneeVerticalAngle && kneeVerticalAngle < Threshold.KneeThresh.value[1]
+                            .toInt() && stateSequence.count("s2") == 1 )
+                        tvLowerHips.isVisible = true
+                    else if (kneeVerticalAngle > Threshold.KneeThresh.value.last().toInt()) {
+                        tvFeedback.text = getFeedbackMessage(2)
+                        incorrectPosture = true
+                    }
+                }
+
+                // Compute Inactivity
+                if (currentState != prevState) {
+                    if (stateSequence.contains("s3") || currentState == "s1")
+                        tvLowerHips.isVisible = false
+                }
 
                 for (normalizedLandmark in coordsBuffer.entries) {
                     canvas.drawPoint(
@@ -264,8 +260,12 @@ class OverlayView(context: Context?, attrs: AttributeSet) : View(context, attrs)
         }
     }
 
-    private fun process(landmarks: PoseLandmarkerResult) {
-
+    private fun getFeedbackMessage(case: Int): String = when (case) {
+        0 -> "Bend Backwards"
+        1 -> "Bend Forward"
+        2 -> "Knee falling over toe"
+        3 -> "Squat too deep"
+        else -> ""
     }
 
     private fun updateStateSequence(state: String) {
