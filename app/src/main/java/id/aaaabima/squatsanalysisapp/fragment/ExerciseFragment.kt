@@ -67,6 +67,7 @@ class ExerciseFragment : Fragment(), PoseLandmarkerHelper.LandmarkerListener {
                 poseLandmarkerHelper.setupPoseLandmarker()
         }
         updateControlsUi()
+        binding.overlay.isVisible = true
     }
 
     override fun onPause() {
@@ -88,6 +89,7 @@ class ExerciseFragment : Fragment(), PoseLandmarkerHelper.LandmarkerListener {
             backgroundExecutor.execute { poseLandmarkerHelper.clearPoseLandmarker() }
         }
         updateControlsUi()
+        binding.overlay.isVisible = false
     }
 
     override fun onDestroyView() {
@@ -205,7 +207,7 @@ class ExerciseFragment : Fragment(), PoseLandmarkerHelper.LandmarkerListener {
     }
 
     private fun detectPose(imageProxy: ImageProxy) {
-        poseLandmarkerHelper.detecLiveStream(
+        poseLandmarkerHelper.detectLiveStream(
             imageProxy = imageProxy,
             isFrontCamera = cameraFacing == CameraSelector.LENS_FACING_FRONT
         )
