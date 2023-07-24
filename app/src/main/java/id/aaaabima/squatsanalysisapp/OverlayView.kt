@@ -178,6 +178,11 @@ class OverlayView(context: Context?, attrs: AttributeSet) : View(context, attrs)
           )
             tvLowerHips.isVisible = true
           else if (kneeVerticalAngle > Threshold.KneeThresh.value.last().toInt()) {
+            tvFeedback.text = getFeedbackMessage(3)
+            incorrectPosture = true
+          }
+
+          if (ankleVerticalAngle > Threshold.AnkleThresh.value.first().toInt()) {
             tvFeedback.text = getFeedbackMessage(2)
             incorrectPosture = true
           }

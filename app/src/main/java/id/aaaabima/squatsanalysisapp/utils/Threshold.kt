@@ -9,4 +9,3 @@ enum class Threshold(val value: ArrayList<Number>) {
   KneeThresh(value = arrayListOf(50, 70, 95)),
   OffsetThresh(value = arrayListOf(35.0f))
 }
-
