@@ -25,7 +25,6 @@ import kotlin.math.abs
 class OverlayView(context: Context?, attrs: AttributeSet) : View(context, attrs) {
   private var results: PoseLandmarkerResult? = null
   private lateinit var activity: Activity
-  private var reqCoords = RequiredCoordinates()
   private var pointPaint = Paint()
   private var linePaint = Paint()
 
@@ -72,17 +71,17 @@ class OverlayView(context: Context?, attrs: AttributeSet) : View(context, attrs)
       }
 
       // Separate every needed coordinate
-      val nose = coordsBuffer[reqCoords.nose]
-      val leftShoulder = coordsBuffer[reqCoords.leftShoulder]
-      val rightShoulder = coordsBuffer[reqCoords.rightShoulder]
-      val leftHip = coordsBuffer[reqCoords.leftHip]
-      val rightHip = coordsBuffer[reqCoords.rightHip]
-      val leftKnee = coordsBuffer[reqCoords.leftKnee]
-      val rightKnee = coordsBuffer[reqCoords.rightKnee]
-      val leftAnkle = coordsBuffer[reqCoords.leftAnkle]
-      val rightAnkle = coordsBuffer[reqCoords.rightAnkle]
-      val leftFoot = coordsBuffer[reqCoords.leftFoot]
-      val rightFoot = coordsBuffer[reqCoords.rightFoot]
+      val nose = coordsBuffer[RequiredCoordinates.Nose.value]
+      val leftShoulder = coordsBuffer[RequiredCoordinates.LeftShoulder.value]
+      val rightShoulder = coordsBuffer[RequiredCoordinates.RightShoulder.value]
+      val leftHip = coordsBuffer[RequiredCoordinates.LeftHip.value]
+      val rightHip = coordsBuffer[RequiredCoordinates.RightHip.value]
+      val leftKnee = coordsBuffer[RequiredCoordinates.LeftKnee.value]
+      val rightKnee = coordsBuffer[RequiredCoordinates.RightKnee.value]
+      val leftAnkle = coordsBuffer[RequiredCoordinates.LeftAnkle.value]
+      val rightAnkle = coordsBuffer[RequiredCoordinates.RightAnkle.value]
+      val leftFoot = coordsBuffer[RequiredCoordinates.LeftFoot.value]
+      val rightFoot = coordsBuffer[RequiredCoordinates.RightFoot.value]
 
       val offsetAngle = findAngle(
         leftShoulder?.toPair() ?: Pair(0f, 0f),
