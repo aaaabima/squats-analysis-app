@@ -149,7 +149,7 @@ class OverlayView(context: Context?, attrs: AttributeSet) : View(context, attrs)
         currentState = getState(kneeVerticalAngle)
         updateStateSequence(currentState)
 
-        // Computer counters
+        // Compute counters
 
         if (currentState == "s1") {
           if (stateSequence.size == 3 && !incorrectPosture)
