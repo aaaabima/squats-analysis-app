@@ -53,6 +53,7 @@ class ExerciseFragment : Fragment(), PoseLandmarkerHelper.LandmarkerListener {
       findViewById<TextView>(R.id.tv_correct).isVisible = true
       findViewById<TextView>(R.id.tv_incorrect).isVisible = true
       findViewById<TextView>(R.id.tv_state).isVisible = true
+      findViewById<TextView>(R.id.tv_lower_hips).isVisible = true
     }
     // Check if all permissions are still present
     if (!PermissionFragment.hasPermissions(requireContext())) {
@@ -78,6 +79,7 @@ class ExerciseFragment : Fragment(), PoseLandmarkerHelper.LandmarkerListener {
       findViewById<TextView>(R.id.tv_correct).isVisible = false
       findViewById<TextView>(R.id.tv_incorrect).isVisible = false
       findViewById<TextView>(R.id.tv_state).isVisible = false
+      findViewById<TextView>(R.id.tv_lower_hips).isVisible = false
     }
     if (this::poseLandmarkerHelper.isInitialized) {
       viewModel.setMinPoseDetectionConfidence(poseLandmarkerHelper.minPoseDetectionConfidence)
