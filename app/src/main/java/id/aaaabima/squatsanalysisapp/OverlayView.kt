@@ -16,6 +16,7 @@ import id.aaaabima.squatsanalysisapp.utils.RequiredCoordinates
 import id.aaaabima.squatsanalysisapp.utils.Threshold
 import id.aaaabima.squatsanalysisapp.utils.count
 import id.aaaabima.squatsanalysisapp.utils.findAngle
+import id.aaaabima.squatsanalysisapp.utils.getFeedbackMessage
 import id.aaaabima.squatsanalysisapp.utils.getSquatsPoseLandmarks
 import id.aaaabima.squatsanalysisapp.utils.toPair
 import id.aaaabima.squatsanalysisapp.utils.toZeroPair
@@ -263,14 +264,6 @@ class OverlayView(context: Context?, attrs: AttributeSet) : View(context, attrs)
 
       else -> ""
     }
-  }
-
-  private fun getFeedbackMessage(case: Int): String = when (case) {
-    0 -> "Bend Backwards"
-    1 -> "Bend Forward"
-    2 -> "Knee falling over toe"
-    3 -> "Squat too deep"
-    else -> ""
   }
 
   private fun updateStateSequence(state: String) {

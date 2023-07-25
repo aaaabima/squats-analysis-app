@@ -48,3 +48,11 @@ fun ArrayList<String>.count(state: String): Int {
   }
   return counter
 }
+
+fun getFeedbackMessage(case: Int): String = when (case) {
+  0 -> "Bend Backwards"
+  1 -> "Bend Forward"
+  2 -> "Knee falling over toe"
+  3 -> "Squat too deep"
+  else -> ""
+}
