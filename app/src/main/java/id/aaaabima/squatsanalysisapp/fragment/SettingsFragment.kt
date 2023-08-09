@@ -8,6 +8,7 @@ import android.widget.AdapterView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import id.aaaabima.squatsanalysisapp.MainViewModel
+import id.aaaabima.squatsanalysisapp.PoseLandmarkerHelper
 import id.aaaabima.squatsanalysisapp.databinding.FragmentSettingsBinding
 import java.util.Locale
 
@@ -121,8 +122,11 @@ class SettingsFragment : Fragment() {
         override fun onNothingSelected(parent: AdapterView<*>?) {
           // No implementation
         }
-
       }
+
+    binding.btnReset.setOnClickListener {
+      resetSettings()
+    }
   }
 
   private fun updateSettingsUi() {
@@ -138,5 +142,14 @@ class SettingsFragment : Fragment() {
       String.format(
         Locale.US, "%.2f", viewModel.currentMinPosePresenceConfidence
       )
+  }
+
+  private fun resetSettings() {
+    viewModel.apply {
+      setMinPoseDetectionConfidence(PoseLandmarkerHelper.DEFAULT_POSE_DETECTION_CONFIDENCE)
+      setMinPosePresenceConfidence(PoseLandmarkerHelper.DEFAULT_POSE_PRESENCE_CONFIDENCE)
+      setMinPoseTrackingConfidence(PoseLandmarkerHelper.DEFAULT_POSE_TRACKING_CONFIDENCE)
+    }
+    updateSettingsUi()
   }
 }
