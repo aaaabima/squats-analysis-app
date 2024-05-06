@@ -32,10 +32,10 @@ class DatePickerFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
   }
 
   override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-    listener?.onDialogDateSet(tag, year, month, dayOfMonth)
+    listener?.onDialogDateSet(year, month, dayOfMonth)
   }
 
   interface DialogDateListener {
-    fun onDialogDateSet(tag: String?, year: Int, month: Int, dayOfMonth: Int)
+    fun onDialogDateSet(year: Int, month: Int, dayOfMonth: Int)
   }
 }

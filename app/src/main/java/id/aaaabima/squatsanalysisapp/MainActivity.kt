@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity(), DatePickerFragment.DialogDateListener,
     binding.bottomNavMain.setupWithNavController(navController)
   }
 
-  override fun onDialogDateSet(tag: String?, year: Int, month: Int, dayOfMonth: Int) {
+  override fun onDialogDateSet(year: Int, month: Int, dayOfMonth: Int) {
     // Set date formatter
     val calendar = Calendar.getInstance()
     calendar.set(year, month, dayOfMonth)

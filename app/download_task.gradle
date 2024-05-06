@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-task downloadTaskFile1(type: Download) {
+tasks.register('downloadTaskFile1', Download) {
     src 'https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_full/float16/1/pose_landmarker_full.task'
     dest project.ext.ASSET_DIR + '/pose_landmarker_full.task'
     overwrite false

@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import id.aaaabima.squatsanalysisapp.R
+import kotlinx.coroutines.launch
 
 private val PERMISSIONS_REQUIRED = arrayOf(Manifest.permission.CAMERA)
 
@@ -55,7 +56,7 @@ class PermissionFragment : Fragment() {
   }
 
   private fun navigateToExercise() {
-    lifecycleScope.launchWhenStarted {
+    lifecycleScope.launch {
       Navigation.findNavController(
         requireActivity(),
         R.id.nav_host_fragment
